@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/navbar.css">
+    
   </head>
 
   <body>
@@ -32,3 +34,24 @@
   </body>
 
 </html>
+
+<script type="module">
+import sidebar from "./components/sidebar.js"
+
+document.getElementById("sidebar").innerHTML=sidebar()
+
+
+</script>
+
+<script>
+
+let collectdata= JSON.parse(localStorage.getItem("article"))
+
+document.getElementById("headline").innerHTML=collectdata.title
+
+document.getElementById("img").setAttribute("src",collectdata.image)
+
+document.getElementById("content").innerHTML=collectdata.description
+console.log(collectdata)
+
+</script>

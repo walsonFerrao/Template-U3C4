@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+
   </head>
 
   <body>
@@ -13,15 +16,49 @@
       <div id="sidebar">
 
         <!--DO NOT CHANGE THIS ID's-->
+         <!-- <div><h1>TechCrunch</h1></div>
+         <div><button>login</button></div>
+         <br>
+         <div><input type="text" placeholder="Search News"> <button>search</button></div>
+         <br>
+         <div>startups</div>
+         <div>newsletters</div>
+         <div>audio</div>
+         <div>video</div> -->
+
 
 
       </div>
 
       <div id="main">
         <!--DO NOT CHANGE THIS ID's-->
-
+        
       </div>
     </div>
   </body>
 
 </html>
+
+<script type="module">
+import sidebar from "./components/sidebar.js"
+
+document.getElementById("sidebar").innerHTML=sidebar()
+
+  import  { apiCall, appendArticles } from "./scripts/main.js"
+
+let url=`https://gnews.io/api/v4/search?q=none&max=20&token=bd92c19a03607d29c5008e29546b60c2`
+
+let main=document.getElementById("main")
+let response=apiCall(url)
+response
+.then((res)=>{
+  let arr=res.articles
+  appendArticles(arr,main)
+
+
+})
+.catch((err)=>{
+  console.log(err)
+})
+
+</script>
