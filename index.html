@@ -61,4 +61,24 @@ response
   console.log(err)
 })
 
+import storeSearchterm from "./scripts/search.js"
+
+document.getElementById("button").addEventListener("click",()=>{
+
+ let term= document.getElementById("input").value
+ var storddata= storeSearchterm(term)
+ console.log(storddata)
+ let check=apiCall(storddata)
+ check.then((res)=>{
+   console.log(res.articles)
+
+   localStorage.setItem("searchterm",JSON.stringify(res.articles))
+   window.location.href="search.html"
+ })
+
+
+
+})
+
+
 </script>
