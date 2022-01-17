@@ -43,6 +43,42 @@ import sidebar from "./components/sidebar.js"
 document.getElementById("sidebar").innerHTML=sidebar()
 
 
+
+let url=`https://gnews.io/api/v4/search?q=none&max=20&token=bd92c19a03607d29c5008e29546b60c2`
+
+let main=document.getElementById("main")
+let response=apiCall(url)
+response
+.then((res)=>{
+  let arr=res.articles
+  appendArticles(arr,main)
+
+
+})
+.catch((err)=>{
+  console.log(err)
+})
+
+import storeSearchterm from "./scripts/search.js"
+
+document.getElementById("button").addEventListener("click",()=>{
+
+ let term= document.getElementById("input").value
+ var storddata= storeSearchterm(term)
+ console.log(storddata)
+ let check=apiCall(storddata)
+ check.then((res)=>{
+   console.log(res.articles)
+
+   localStorage.setItem("searchterm",JSON.stringify(res.articles))
+   window.location.href="search.html"
+ })
+
+
+
+})
+
+
 </script>
 
 <script>
